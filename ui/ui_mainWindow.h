@@ -30,6 +30,18 @@ struct cmd_arguments{
     QString time = "";
 };
 
+// Переопределяем QTextEdit, что бы добавить контекстное меню "Clear" для удаления всех логов
+class MyTextEdit : public QTextEdit {
+    Q_OBJECT
+public:
+    explicit MyTextEdit(QWidget *parent = nullptr);
+    explicit MyTextEdit(const QString &text, QWidget *parent = nullptr);
+    void contextMenuEvent(QContextMenuEvent *event);
+private slots:
+    void clearLog();
+private:
+    QAction* clearAction;
+};
 
 class ui_mainWindow : public QMainWindow
 {
@@ -55,7 +67,7 @@ private slots:
     void EditConnectionCfg();
     void About();
     void Help();
-    void ReloadConfiguration();
+    void ReloadConfiguration();    
 
 private:
     bool eventFilter(QObject *obj, QEvent *event);
@@ -93,7 +105,7 @@ private:
     QTimeEdit* time_to;
     QPushButton* doReport;
 
-    QTextEdit* logEdit;
+    MyTextEdit* logEdit;
     QCheckBox* print_querries;
 
     QProgressBar *pProgressBar;

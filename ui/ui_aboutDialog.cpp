@@ -30,7 +30,7 @@ ui_AboutDialog::ui_AboutDialog(QWidget *parent)
     QLabel* text = new QLabel("<b>Продукт: </b>Отчеты для Alpha.Server<br>"
                               "<b>Разработал: </b>Собецкий Александр<br>"
                               "<b>Дата сборки: </b>" + build_dt + "<br><br>"
-                              "(c) 2022 ООО ИТР<br>"
+                              "(c) 2023 ООО ИТР<br>"
                               "<a href=\"mailto:sobetsky.alexander@gmail.com\">sobetsky.alexander@gmail.com</a>");
 
     hb_layout->addWidget(icon);

@@ -125,7 +125,7 @@ QString doc_io::save()
     //Подпись
     xlnt::cell_reference signn_ref = wb.active_sheet().cell("A1").reference().make_offset(0, position + 1);
     xlnt::cell sign_cell = wb.active_sheet().cell(signn_ref);
-    sign_cell.value(u8"ООО \"ИННОВАЦИОННЫЕ ТЕХНОЛОГИИ И РЕШЕНИЯ\", 2022");
+    sign_cell.value(u8"ООО \"ИННОВАЦИОННЫЕ ТЕХНОЛОГИИ И РЕШЕНИЯ\", 2023");
 
     QString file_name = name + " (" + time_stamp + ")" + ".xlsx";
 

@@ -14,6 +14,29 @@
 
 QString report_timestamp;
 
+MyTextEdit::MyTextEdit(QWidget *parent) : QTextEdit(parent) {
+   clearAction = new QAction("Clear",this);
+   connect(clearAction, SIGNAL(triggered(bool)), this, SLOT(clear()));
+};
+
+MyTextEdit::MyTextEdit(const QString &text, QWidget *parent) : QTextEdit(text, parent) {
+   clearAction = new QAction("Clear",this);
+   connect(clearAction, SIGNAL(triggered(bool)), this, SLOT(clear()));
+};
+
+void MyTextEdit::contextMenuEvent(QContextMenuEvent *event)
+{
+    QMenu* menu = createStandardContextMenu(event->pos());
+    menu->addAction(clearAction);
+    menu->exec(event->globalPos());
+    delete menu;
+}
+
+void MyTextEdit::clearLog()
+{
+    this->clear();
+}
+
 ui_mainWindow::ui_mainWindow(cmd_arguments args, QWidget *parent)
     : QMainWindow{parent}, sql_obj(0), cmd_args(args), stop_clicked(false)
 {
@@ -32,7 +55,7 @@ ui_mainWindow::ui_mainWindow(cmd_arguments args, QWidget *parent)
     createActions();
     createMenus();
 
-    logEdit = new QTextEdit("Программа готова к работе");
+    logEdit = new MyTextEdit("Программа готова к работе");
     logEdit->setReadOnly(true);
     QLabel * log_label = new QLabel("Лог");
 
